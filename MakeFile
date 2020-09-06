@@ -1,0 +1,5 @@
+derived_data/covid.csv:\
+ source_data/covid.csv\
+ tidy_source_data.R
+	Rscript tidy_source_data.R 
+	#Must use make -f MakeFile to run this file
