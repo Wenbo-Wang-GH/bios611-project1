@@ -10,5 +10,5 @@ Using this project
 You will need Docker, and be able to run docker as your user.
 
     > docker build . -t project1-env
-    > docker run -e PASSWORD=<yourpassword> -p 8787:8787 -v `pwd`:/home/rstudio -t rocker/verse
+    > docker run -v `pwd`:/home/rstudio -p 8787:8787 -e PASSWORD=<yourpassword> -t project1-env
       
