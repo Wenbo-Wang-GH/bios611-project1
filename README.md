@@ -18,7 +18,7 @@ Descriptive statistics will take an initial look at some of these effects, and c
 
 ### Datasets
 
-The dataset contains observations of patients from Mexico, and can be found on Kaggle: [](https://www.kaggle.com/tanmoyx/covid19-patient-precondition-dataset#). 
+The dataset contains observations of patients from Mexico, and can be found on [Kaggle](https://www.kaggle.com/tanmoyx/covid19-patient-precondition-dataset#). 
 
 Two descriptive Excel files contain the former variable names and interpretation of numeric values. 
 
