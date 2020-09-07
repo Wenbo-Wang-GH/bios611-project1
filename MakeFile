@@ -1,6 +1,12 @@
 .PHONY: clean
 
-derived_data/covid.csv\ figures/Patient_Type_Age.png:\
+clean:
+	rm -f derived_data/*.csv
+	rm -f derived_data/*.json
+	rm -f figures/*.png
+	rm -f figures/*.pdf
+
+derived_data/covid.csv\ derived_data/covid_dup.csv\ figures/Patient_Type_Age.png:\
  source_data/covid.csv\
  tidy_source_data.R
 	Rscript tidy_source_data.R 
