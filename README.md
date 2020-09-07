@@ -27,6 +27,12 @@ Two descriptive Excel files contain the former variable names and instructions f
 
 As seen in the violin graph above, mortality is greater for patients who are hospitalized. This is expected, as healthier patients might prefer treatment at home over medical equipment at the hospital if symptoms are not severe.
 
+<img src="figures/Wait_Time.png" width="600">
+
+The above graph shows how patients who wait longer to be treated for the disease might have a higher mortality rate. 
+
+Because many of the precondition variables have only two options, we will visualize them with statistical models later in the project. 
+
 Using this Project
 -----------------
 

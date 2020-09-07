@@ -28,10 +28,11 @@ p <- ggplot(covid, aes(dependent, age, fill=patient_type)) +
 ggsave("figures/Patient_Type_Age.png",plot=p);
 
 #attempt at a separate chart
-q <- ggplot(covid, aes(x = waitTime, color = dependent)) + geom_histogram(alpha = 0.25, binwidth = 15) +
-    scale_fill_discrete(name="Mortality",labels=c("No", "Yes")) +
-    xlab("Age") + xlim(0,20)
-#ggsave("figures/Patient_Type_Age.png",plot=p);
+q <- ggplot(covid, aes(x = waitTime, fill = dependent)) + geom_histogram(aes(y = ..density..),alpha = 0.50, binwidth = 1) +
+  scale_fill_discrete(name="Mortality",labels=c("No", "Yes")) +
+  xlab("Age") + xlim(0,20) +geom_vline(xintercept = 3.639876, size = 0.5,alpha = 0.25, colour = "red", linetype = "solid") + 
+  geom_vline(xintercept = 4.046071, size = 0.5,alpha = 0.5, colour = "turquoise", linetype = "solid") 
+ggsave("figures/Wait_Time.png",plot=q);
 
 write.csv(covid, "derived_data/covid.csv");
 write.csv(covid, "derived_data/covid_dup.csv")
