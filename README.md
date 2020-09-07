@@ -24,6 +24,9 @@ Two descriptive Excel files contain the former variable names and instructions f
 
 ### Preliminary Figures
 ![](figures/Patient_Type_Age.png)
+<img src="figures/Patient_Type_Age.png" width="48">
+
+As seen in the violin graph above, mortality is greater for patients who are hospitalized. This is expected, as healthier patients might prefer self-treatment at home if symptoms are not severe.
 
 Using this Project
 -----------------
