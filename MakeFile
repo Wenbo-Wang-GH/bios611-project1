@@ -6,9 +6,7 @@ clean:
 	rm -f figures/*.png
 	rm -f figures/*.pdf
 
-derived_data/covid.csv\ derived_data/covid_dup.csv\ figures/Patient_Type_Age.png:\
+derived_data/covid.csv\ derived_data/covid_dup.csv\ figures/Patient_Type_Age.png\ figures/Wait_Time.png:\
  source_data/covid.csv\
  tidy_source_data.R
 	Rscript tidy_source_data.R 
-	#This file is not registering as a Makefile, 
-	#must use "make -f MakeFile" to run this file
