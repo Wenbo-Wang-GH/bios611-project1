@@ -1,10 +1,3 @@
-.PHONY: clean
-
-clean:
-	rm -f derived_data/*.csv
-	rm -f derived_data/*.json
-	rm -f figures/*.png
-	rm -f figures/*.pdf
 
 derived_data/covid.csv\ derived_data/covid_dup.csv\ figures/Patient_Type_Age.png\ figures/Wait_Time.png:\
  source_data/covid.csv\
