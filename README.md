@@ -25,7 +25,7 @@ Two descriptive Excel files called "Description" and "Catalogs" contain the form
 ### Preliminary Figures
 <img src="figures/Patient_Type_Age.png" width="600">
 
-As seen in the violin graph above, older patients are more likely to be sent to the hospital for inpatient care. This is reflected in older individuals also seeming to be the largest proportion of mortality cases at the hospital. Overall, older populations are more at risk for mortality due to the disease. 
+As seen in the violin graph above, where 0 represents an alive patient, older patients are more likely to be sent to the hospital for inpatient care. This is reflected in older individuals also seeming to be the largest proportion of mortality cases at the hospital. Overall, older populations are more at risk for mortality due to the disease. 
 
 <img src="figures/Wait_Time.png" width="600">
 
