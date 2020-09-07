@@ -1,6 +1,6 @@
 Bios 611 Project
 ================
-COVID-19 Analyis
+COVID-19 Analysis
 ------------------
 Proposal
 --------
