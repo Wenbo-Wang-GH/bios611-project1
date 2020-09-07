@@ -4,7 +4,7 @@ COVID-19 Analyis
 ------------------
 Proposal
 --------
-###Introduction
+### Introduction
 
 The coronavirus pandemic is a result of the coronavirus disease (COVID-19) caused by the severe acute respiratory syndrome coronavirus 2 (SARS-CoV-2), an RNA virus that has affected the lives of many individuals since its discovery late in 2019. 
 
