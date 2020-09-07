@@ -1,3 +1,3 @@
 FROM rocker/verse
-MAINTAINER Wenbo Wand <wenbo@live.unc.edu>
+MAINTAINER Wenbo Wang <wenbo@live.unc.edu>
 RUN echo "Hello World"
