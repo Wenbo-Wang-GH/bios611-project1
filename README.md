@@ -18,9 +18,9 @@ Descriptive statistics will take an initial look at some of these effects, and c
 
 ### Datasets
 
-The dataset contains observations of patients from Mexico, and can be found on [Kaggle](https://www.kaggle.com/tanmoyx/covid19-patient-precondition-dataset#). 
+The dataset contains observations of patients from Mexico, and can be found on [Kaggle](https://www.kaggle.com/tanmoyx/covid19-patient-precondition-dataset#). Potentially important variables to analyze include "patient_type", which describes whether the patient was given inpatient or outpatient care; date_symptoms, entry_date, and date_died for when a patient started showing symptoms, the day they were sought treatment, and if they later died from the disease, as well as chronic illness conditions such as diabetes, hypertension, etc. 
 
-Two descriptive Excel files contain the former variable names and instructions for interpretation of numeric values. 
+Two descriptive Excel files called "Description" and "Catalogs" contain the former variable names and instructions for interpretation of numeric values. 
 
 ### Preliminary Figures
 <img src="figures/Patient_Type_Age.png" width="600">
@@ -29,7 +29,7 @@ As seen in the violin graph above, older patients are more likely to be sent to 
 
 <img src="figures/Wait_Time.png" width="600">
 
-The above graph shows how patients who wait longer to be treated for the disease might have a similar mortality rate to those who received treatment earlier. There seems to be a slight difference, but the it most likely is not statistically significant. 
+The above graph shows how patients who wait longer to be treated for the disease might have a similar mortality rate to those who received treatment earlier. There seems to be a slight difference, but is most likely not statistically significant. 
 
 Because many of the precondition variables have only two options, we will visualize them with statistical models later in the project. 
 
