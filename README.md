@@ -25,11 +25,11 @@ Two descriptive Excel files contain the former variable names and instructions f
 ### Preliminary Figures
 <img src="figures/Patient_Type_Age.png" width="600">
 
-As seen in the violin graph above, mortality is greater for patients who are hospitalized. This is expected, as healthier patients might prefer treatment at home over medical equipment at the hospital if symptoms are not severe.
+As seen in the violin graph above, older patients are more likely to be sent to the hospital for inpatient care. This is reflected in older individuals also seeming to be the largest proportion of mortality cases at the hospital. Overall, older populations are more at risk for mortality due to the disease. 
 
 <img src="figures/Wait_Time.png" width="600">
 
-The above graph shows how patients who wait longer to be treated for the disease might have a higher mortality rate. 
+The above graph shows how patients who wait longer to be treated for the disease might have a similar mortality rate to those who received treatment earlier. There seems to be a slight difference, but the it most likely is not statistically significant. 
 
 Because many of the precondition variables have only two options, we will visualize them with statistical models later in the project. 
 
