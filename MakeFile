@@ -1,5 +1,8 @@
-derived_data/covid.csv:\
+.PHONY: clean
+
+derived_data/covid.csv\ figures/Patient_Type_Age.png:\
  source_data/covid.csv\
  tidy_source_data.R
 	Rscript tidy_source_data.R 
-	#Must use make -f MakeFile to run this file
+	#This file is not registering as a Makefile, 
+	#must use "make -f MakeFile" to run this file
