@@ -23,7 +23,7 @@ The dataset contains observations of patients from Mexico, and can be found on [
 Two descriptive Excel files contain the former variable names and instructions for interpretation of numeric values. 
 
 ### Preliminary Figures
-
+![](figures/Patient_Type_Age.png)
 
 Using this Project
 -----------------
@@ -38,5 +38,5 @@ This Docker container is based on rocker/verse. Run rstudio server:
     
     > docker run -v `pwd`:/home/rstudio -p 8787:8787 -e PASSWORD=<yourpassword> -t project1-env
       
-Then connect to the machine on port 8787.
+then connect to the machine on port 8787.
 
