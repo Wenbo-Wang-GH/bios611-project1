@@ -34,5 +34,13 @@ q <- ggplot(covid, aes(x = waitTime, fill = dependent)) + geom_histogram(aes(y =
   geom_vline(xintercept = 4.046071, size = 0.5,alpha = 0.5, colour = "turquoise", linetype = "solid") 
 ggsave("figures/Wait_Time.png",plot=q);
 
+#create a logistic model predicting for whether a patient died
+lm <- glm(dependent ~ age + sex + diabetes + pregnancy + copd + asthma + inmsupr + hypertension + 
+            +cardiovascular + obesity + renal_chronic + tobacco + contact_other_covid +
+            icu, data = covid, family=binomial)
+sink("derived_data/lm.txt")
+print(summary(lm))
+sink() 
+
 write.csv(covid, "derived_data/covid.csv");
 write.csv(covid, "derived_data/covid_dup.csv")
