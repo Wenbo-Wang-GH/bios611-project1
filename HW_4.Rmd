@@ -1,0 +1,80 @@
+---
+title: "HW_4"
+output: html_document
+---
+
+```{r, message=FALSE}
+require(dplyr)
+
+```
+
+```{r}
+#F1 score function and load data
+f1 <- MLmetrics::F1_Score;
+person <- read_csv("source_data/500_Person_Gender_Height_Weight_Index.csv")
+
+set.seed(1)
+#Prepare the data
+person$Female <- ifelse(person$Gender == "Female", TRUE, FALSE);
+person <- tibble(person, set=factor(c(rep("Train",500*.7),
+                         rep("Validate",500*0.15),
+                         rep("Test",500*0.15))
+                       %>%
+                       sample(500,replace=FALSE)))
+
+train <- person %>% filter(set=="Train");
+validate <- person %>% filter(set=="Validate");
+test <- person %>% filter(set=="Test");
+
+#a.
+lm <- glm(Female ~ Height + Weight, family=binomial(link='logit') ,data=train)
+pred <- predict(lm, newdata=validate, type="response");
+sum((pred>0.5) == validate$Female)/nrow(validate);
+#The accuracy is 0.466666, or around 47%.
+
+#b. 
+bm <- gbm(Female ~ Height + Weight, distribution="bernoulli", data=train, n.trees=100, interaction.depth = 2, shrinkage = 0.1)
+
+pred_bm <- predict(bm, validate, type="response");
+sum((pred_bm>0.5)==validate$Female)/nrow(validate);
+#The accuracy is 0.52.
+
+
+#c. remove all but 50 males
+set.seed(1)
+nrow(person[person$Gender == 0, ]) #obtain number of males
+samples <- sample(1:245,195,replace=FALSE) #sample number of males to not include in new dataset
+new_person <- person[-samples,] #remove all but 50 males
+
+train_new <- new_person %>% filter(set=="Train");
+validate_new <- new_person %>% filter(set=="Validate");
+test_new <- new_person %>% filter(set=="Test");
+
+lm_new <- glm(Female ~ Height + Weight, family=binomial(link='logit') ,data=train_new)
+pred_new <- predict(lm_new, newdata=validate_new, type="response");
+sum((pred_new>0.5) == validate_new$Female)/nrow(validate_new);
+f1(validate_new$Female>0.5, pred_new > 0.5);
+#The F1 score is 0.0.13333, and prediction accuracy is 0.458333.
+
+#d.
+roc <- do.call(rbind, Map(function(threshold){
+    p <- pred_new > threshold;
+    tp <- sum(p[validate_new$Female])/sum(validate_new$Female);
+    fp <- sum(p[!validate_new$Female])/sum(!validate_new$Female);
+    tibble(threshold=threshold,
+           tp=tp,
+           fp=fp)
+},seq(100)/100))
+
+ggplot(roc, aes(fp,tp)) + geom_line() + xlim(0,1) + ylim(0,1) +
+    labs(title="ROC Curve",x="False Positive Rate",y="True Positive Rate")
+#The ROC curve plots the true positive rate vs. the false positive rate for the sparse data with 50 males. The fact that the curve is almost a line with slope one shows that the glm model fitted to the sparse data is not accurate.
+
+#e. 
+new_person$Gender <- ifelse(new_person$Gender == "Female", 1, 0); 
+k2 <- kmeans(scale(new_person[,c(1:3)]), centers = 2, nstart = 25)
+k2
+#After scaling the variables, females are 0.98858, males are -1.0082, while height and weight are monotonically the same as the original data. The two clusters show that males are generally shorter but heavier than females.
+
+
+```
