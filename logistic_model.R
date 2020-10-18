@@ -1,7 +1,7 @@
 library(tidyverse)
 library(readr)
 
-covid <- read.csv("derived_data/covid.csv");
+covid <- readRDS("derived_data/covid.csv");
 
 #create a logistic model predicting for whether a patient died
 lm <- glm(dependent ~ age + sex + diabetes + pregnancy + copd + asthma + inmsupr + hypertension + 

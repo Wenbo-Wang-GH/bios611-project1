@@ -1,7 +1,7 @@
 library(tidyverse)
 library(readr)
 
-covid <- read.csv("derived_data/covid.csv");
+covid <- readRDS("derived_data/covid.csv");
 
 q <- ggplot(covid, aes(x = waitTime, fill = dependent)) + geom_histogram(aes(y = ..density..),alpha = 0.50, binwidth = 1) +
   scale_fill_discrete(name="Mortality",labels=c("No", "Yes")) +

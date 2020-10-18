@@ -1,7 +1,7 @@
 library(tidyverse)
 library(readr)
 
-covid <- read.csv("derived_data/covid.csv");
+covid <- readRDS("derived_data/covid.csv");
 
 #plots
 p <- ggplot(covid, aes(dependent, age, fill=patient_type)) +
