@@ -22,6 +22,6 @@ covid[,"date_symptoms"] <- as.Date(covid[,"date_symptoms"], format = "%d-%m-%Y")
 covid$waitTime <- as.vector(difftime(covid$entry_date, covid$date_symptoms, units='days'))
 
 write.csv(covid, "derived_data/covid.csv");
-write.csv(covid, "derived_data/covid_dup.csv")
+write.csv(covid_dup, "derived_data/covid_dup.csv")
 
 
