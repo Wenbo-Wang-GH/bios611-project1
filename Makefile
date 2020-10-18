@@ -15,5 +15,11 @@ derived_data/lm.txt:
  derived_data/covid.csv\
 	logistic_model.R
 
-report.pdf: report.Rmd figures/Patient_Type_Age.png figures/Wait_Time.png derived_data/lm.txt derived_data/covid.csv derived_data/covid_dup.csv
+report.pdf: 
+ report.Rmd\ 
+ figures/Patient_Type_Age.png\
+ figures/Wait_Time.png\
+ derived_data/lm.txt\
+ derived_data/covid.csv\
+ derived_data/covid_dup.csv\
 	R -e "rmarkdown::render('report.Rmd', output_format='pdf_document')"
