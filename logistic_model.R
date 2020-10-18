@@ -1,4 +1,5 @@
 library(tidyverse)
+library(readr)
 
 covid <- read.csv("derived_data/covid.csv");
 

@@ -1,5 +1,5 @@
 library(tidyverse)
-library(ggplot2)
+library(readr)
 
 cov <- read.csv("./source_data/covid.csv");
 
