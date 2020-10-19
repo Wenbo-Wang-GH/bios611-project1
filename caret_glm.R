@@ -8,7 +8,7 @@ covid <- readRDS("derived_data/covid.csv");
 set.seed(1)
 covid_subset <- covid[sample(nrow(covid), 20000),] #reduce computation time with subset of data
 
-trainIndex <- createDataPartition(covid_subset$dependent, p = .6, 
+trainIndex <- caret::createDataPartition(covid_subset$dependent, p = .6, 
 																	list = FALSE, 
 																	times = 1)
 covid_trn <- covid_subset[trainIndex, ]
