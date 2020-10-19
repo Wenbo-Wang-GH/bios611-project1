@@ -1,6 +1,6 @@
 library(tidyverse)
 library(readr)
-library(caret)
+#library(caret)
 library(e1071)
 
 covid <- readRDS("derived_data/covid.csv");
@@ -22,8 +22,8 @@ lm <- glm(dependent ~ age + sex + diabetes + copd + asthma + inmsupr + hypertens
 covid_tst$pred <- predict(lm, newdata=covid_tst, type="response");
 
 set.seed(1)
-train_ctrl <- trainControl(method = "cv", number = 50);
-glmFit1 <- train(dependent ~ age + sex + diabetes + copd + asthma + inmsupr + hypertension + 
+train_ctrl <- caret::trainControl(method = "cv", number = 50);
+glmFit1 <- caret::train(dependent ~ age + sex + diabetes + copd + asthma + inmsupr + hypertension + 
 								 	+cardiovascular + obesity + renal_chronic + tobacco + contact_other_covid +
 								 	icu, data = covid_trn, 
 								 method = "glm",
@@ -32,7 +32,7 @@ glmFit1 <- train(dependent ~ age + sex + diabetes + copd + asthma + inmsupr + hy
 summary(glmFit1);
 sink("figures/glmFit1.txt")
 
-covid_tst$pred2 <- predict(glmFit1, newdata = covid_tst)
+covid_tst$pred2 <- caret::predict(glmFit1, newdata = covid_tst)
 sum((prob$yes>0.5) == (as.numeric(covid_tst$dependent)>0.5))/nrow(covid_tst)
 
 r <- ggplot() + geom_density(covid_tst, mapping = aes(pred, color = "GLM")) + 
