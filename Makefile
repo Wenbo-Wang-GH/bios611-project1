@@ -1,10 +1,10 @@
 .PHONY: clean
 
 clean: 
-	rm -f derived_data/*.csvrm 
-	rm -f derived_data/*.txtrm 
-	rm -f figures/*.pngrm 
-	rm -f figures/*.txtrm 
+	rm -f derived_data/*.csv
+	rm -f derived_data/*.txt 
+	rm -f figures/*.png 
+	rm -f figures/*.txt 
 	rm -f report.pdf
 
 derived_data/covid.csv derived_data/covid_dup.csv: source_data/covid.csv tidy_source_data.R
