@@ -5,7 +5,10 @@ RUN R -e "install.packages('tidyverse')"
 RUN R -e "install.packages('readr')"
 RUN R -e "install.packages('kernlab')"
 RUN R -e "install.packages('gbm')"
-RUN R -e "library(devtools)"
 RUN R -e "install.packages('e1071')"
-RUN R -e "devtools::install_github('topepo/caret/pkg/caret')"
+RUN R -e "install.packages("caret",
+                 repos = "http://cran.r-project.org", 
+                 dependencies = c("Depends", "Imports", "Suggests"))"
+
+
 
