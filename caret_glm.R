@@ -1,8 +1,9 @@
 library(tidyverse)
 library(readr)
 library(lattice)
-library(caret)
 library(e1071)
+library(caret)
+
 
 covid <- readRDS("derived_data/covid.csv");
 
