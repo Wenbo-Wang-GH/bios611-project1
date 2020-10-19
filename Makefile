@@ -1,7 +1,11 @@
 .PHONY: clean
 
 clean: 
-	rm -f derived_data/*.csvrm -f derived_data/*.txtrm -f figures/*.pngrm -f figures/*.txtrm -f report.pdf
+	rm -f derived_data/*.csvrm 
+	rm -f derived_data/*.txtrm 
+	rm -f figures/*.pngrm 
+	rm -f figures/*.txtrm 
+	rm -f report.pdf
 
 derived_data/covid.csv derived_data/covid_dup.csv: source_data/covid.csv tidy_source_data.R
 	Rscript tidy_source_data.R 
