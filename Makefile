@@ -1,3 +1,7 @@
+.PHONY: clean
+
+clean: rm -f derived_data/*.csvrm -f derived_data/*.txtrm -f figures/*.pngrm -f figures/*.txtrm -f report.pdf
+
 derived_data/covid.csv derived_data/covid_dup.csv: source_data/covid.csv tidy_source_data.R
 	Rscript tidy_source_data.R 
 	
@@ -6,9 +10,18 @@ figures/Patient_Type_Age.png: derived_data/covid.csv
 
 figures/Wait_Time.png: derived_data/covid.csv
 	Rscript wait_time.R
+	
+figures/Prediction_glm.png: derived_data/covid.csv
+	Rscript logistic_predict_density.R
+	
+figures/Prediction_caret_glm.png: derived_data/covid.csv
+	Rscript caret_glm.R
+	
+figures/lm.txt: derived_data/covid.csv
+	Rscript logistic_glm.R
+	
+figures/bm.txt: derived_data/covid.csv
+	Rscript logistic_gbm.R
 
-derived_data/lm.txt: derived_data/covid.csv
-	Rscript logistic_model.R
-
-report.pdf: report.Rmd figures/Patient_Type_Age.png figures/Wait_Time.png derived_data/lm.txt derived_data/covid.csv derived_data/covid_dup.csv
+report.pdf: report.Rmd figures/Patient_Type_Age.png figures/Wait_Time.png figures/Prediction_glm.png figures/Prediction_caret_glm.png figures/lm.txt figures/bm.txt derived_data/covid.csv derived_data/covid_dup.csv
 	R -e "rmarkdown::render('report.Rmd', output_format='pdf_document')"

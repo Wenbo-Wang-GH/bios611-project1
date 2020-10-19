@@ -1,8 +1,11 @@
 library(tidyverse)
 library(readr)
+library(gbm)
 
 #load data
 covid <- readRDS("derived_data/covid.csv");
+covid$dependent <- as.character(covid$dependent)
+
 set.seed(1)
 covid_subset <- covid[sample(nrow(covid), 20000),]
 
@@ -32,14 +35,15 @@ test <- res$test
 
 #try again, removing collinear variable, non-significant variables
 
-lm <- glm(dependent ~ age + sex + diabetes + copd + asthma + inmsupr + hypertension + 
+bm <- gbm(dependent ~ age + sex + diabetes + copd + asthma + inmsupr + hypertension + 
 						+cardiovascular + obesity + renal_chronic + tobacco + contact_other_covid +
-						icu, data = train, family=binomial) 
-
-validate$pred <- predict(lm, newdata=validate, type="response");
-p <- ggplot(validate, aes(pred)) + geom_density();
-
-sum((validate$pred>0.5) == (as.numeric(validate$dependent)>0.5))/nrow(validate)
-
-ggsave("figures/Prediction_glm.png",plot=p)
+						icu, distribution="bernoulli",
+					data=train,
+					n.trees = 100,
+					interaction.depth = 2,
+					shrinkage = 0.1,
+					cv.folds = 5,);
+sink("figures/bm.txt")
+summary(bm, cBars = 5)
+closeAllConnections()
 
