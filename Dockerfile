@@ -6,7 +6,7 @@ RUN R -e "install.packages('readr')"
 RUN R -e "install.packages('kernlab')"
 RUN R -e "install.packages('gbm')"
 RUN R -e "install.packages('e1071')"
-RUN R -e "install.packages("caret", repos = "http://cran.r-project.org", dependencies = c("Depends", "Imports", "Suggests"))"
+RUN R -e "install.packages('caret', repos = 'http://cran.r-project.org', dependencies = c('Depends', 'Imports', 'Suggests'))"
 
 
 
