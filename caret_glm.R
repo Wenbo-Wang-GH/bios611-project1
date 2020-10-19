@@ -1,6 +1,7 @@
 library(tidyverse)
 library(readr)
-#library(caret)
+library(lattice)
+library(caret)
 library(e1071)
 
 covid <- readRDS("derived_data/covid.csv");
@@ -8,7 +9,7 @@ covid <- readRDS("derived_data/covid.csv");
 set.seed(1)
 covid_subset <- covid[sample(nrow(covid), 20000),] #reduce computation time with subset of data
 
-trainIndex <- caret::createDataPartition(covid_subset$dependent, p = .6, 
+trainIndex <- createDataPartition(covid_subset$dependent, p = .6, 
 																	list = FALSE, 
 																	times = 1)
 covid_trn <- covid_subset[trainIndex, ]
@@ -22,8 +23,8 @@ lm <- glm(dependent ~ age + sex + diabetes + copd + asthma + inmsupr + hypertens
 covid_tst$pred <- predict(lm, newdata=covid_tst, type="response");
 
 set.seed(1)
-train_ctrl <- caret::trainControl(method = "cv", number = 50);
-glmFit1 <- caret::train(dependent ~ age + sex + diabetes + copd + asthma + inmsupr + hypertension + 
+train_ctrl <- trainControl(method = "cv", number = 50);
+glmFit1 <- train(dependent ~ age + sex + diabetes + copd + asthma + inmsupr + hypertension + 
 								 	+cardiovascular + obesity + renal_chronic + tobacco + contact_other_covid +
 								 	icu, data = covid_trn, 
 								 method = "glm",
