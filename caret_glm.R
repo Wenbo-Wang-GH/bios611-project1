@@ -45,7 +45,7 @@ sum((covid_tst$pred2$yes>0.5) == (as.numeric(covid_tst$dependent)>1.5))/nrow(cov
 
 r <- ggplot() + geom_density(covid_tst, mapping = aes(pred, color = "GLM")) + 
 								geom_density(as.data.frame(covid_tst$pred2), mapping = aes(yes, color = "Caret_GLM")) +
-								theme(legend.justification=c(1,1), legend.position=c(1,1)) +
+								theme(legend.justification=c(1,0), legend.position=c(1,0)) +
 								scale_fill_manual(values=c("#999999", "#56B4E9"), 
 										name="Model")
 
