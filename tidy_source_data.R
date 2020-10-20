@@ -15,7 +15,7 @@ covid$dependent <- ifelse(as.numeric(substring(covid$date_died,1,2)) >31, 0, 1);
 
 #Factorize variables
 names <- c('patient_type' ,'sex', 'pneumonia', 'intubed','pregnancy','diabetes',
-           'copd', 'asthma', 'inmsupr','hypertension','other_disease','cardiovascular',
+           'copd', 'asthma', 'inmsupr','hypertension','other_disease','cardiovascular', 'dependent',
            'obesity', 'renal_chronic','tobacco', 'contact_other_covid','covid_res', 'icu');
 covid[,names] <- lapply(covid[,names] , factor);
 
