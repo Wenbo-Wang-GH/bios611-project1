@@ -71,6 +71,8 @@ cat(readLines('figures/glmFit1.txt'), sep = '\n')
 From our analysis of the COVID-19 data, we conclude that pre-existing health conditions and other characteristics of individuals can be significant in predicting whether severe symptoms of SARS-CoV-2 could occur, of which include gender, age, diabetes, chronic kidney failure, and immunosuppression. We also found that contact tracing can be helpful in reducing risk of mortality within positive individuals, as the lack of knowledge of interacting with positive case individuals resulted in higher mortality rates. 
 
 Therefore, our statistical models can predict whether someone with certain characteristics or pre-conditions are more likely to experience more severe symptoms of COVID-19 such as mortality. Further work in studying a different dependent variable as a severe symptom, improving accuracy of methods for reducing class imbalance and finding clusters of subpopulations susceptible to the disease can also be further areas of study one could consider.                                              
+
+
 Using this Project
 -----------------
 
