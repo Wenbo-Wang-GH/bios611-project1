@@ -43,6 +43,7 @@ bm <- gbm(dependent ~ age + sex + diabetes + copd + asthma + inmsupr + hypertens
 					interaction.depth = 2,
 					shrinkage = 0.1,
 					cv.folds = 5,);
+
 sink("figures/bm.txt")
 summary(bm, cBars = 5)
 closeAllConnections()
