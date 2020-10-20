@@ -2,7 +2,9 @@ Bios 611 - Project 1
 ====================
   COVID-19 Analysis
 ------------------
-The example report below is an example of the final report in report.pdf. 
+
+This text is an example of the report that will generate after following the code instructions below.
+
 ### Introduction
   
   The coronavirus pandemic is a result of the coronavirus disease (COVID-19) caused by the severe acute respiratory syndrome coronavirus 2 (SARS-CoV-2), an RNA virus that has affected the lives of many individuals since its discovery late in 2019. 
@@ -17,19 +19,19 @@ Descriptive statistics will take an initial look at some of these effects, and c
 
 ### Datasets
 
-The dataset contains observations of patients from Mexico, and can be found on [Kaggle](https://www.kaggle.com/tanmoyx/covid19-patient-precondition-dataset#). Potentially important variables we will analyze for addressing our questions include "patient_type", which describes whether the patient was given in-patient or out-patient care; date_symptoms, entry_date, and date_died for when a patient started showing symptoms, the day they were sought treatment, and if they later died from the disease, as well as chronic illness conditions such as diabetes, hypertension, etc. 
+The dataset contains observations of patients from Mexico, and can be found on [Kaggle](https://www.kaggle.com/tanmoyx/covid19-patient-precondition-dataset#) ("Kaggle" is a hyperlink to the dataset). Potentially important variables we will analyze for addressing our questions include "patient_type", which describes whether the patient was given in-patient or out-patient care; date_symptoms, entry_date, and date_died for when a patient started showing symptoms, the day they were sought treatment, and if they later died from the disease, as well as chronic illness conditions such as diabetes, hypertension, etc. 
                                                                                         
-Two descriptive Excel files called "Description" and "Catalogs" contain the former variable names and instructions for interpretation of numeric values: For yes/no responses, the catalog describes yes as 1, no as 2, NA as 97, question ignored as 98, and not specified as 99. For gender, 1 is female and 2 is male, and 99 is not specified. Positive SARS-CoV-2 cases are labeled as 2. We will be working on the subset of all positive SARS-CoV-2 cases for this report.
+Two descriptive Excel files called "Description" and "Catalogs" contain the former variable names and instructions for interpretation of numeric values: For yes/no responses, the catalog describes yes as 1, no as 2, NA as 97, question ignored as 98, and not specified as 99. For gender, 1 is female and 2 is male, and 99 is not specified. Positive SARS-CoV-2 cases are labeled as 2. These files can be found in the source_data folder on the git repository. We will be working on the subset of all positive SARS-CoV-2 cases for this report.
                                                                                         
 ### Preliminary Figures
-#![](figures/Patient_Type_Age.png)
+![](figures/Patient_Type_Age.png)
 
                                                                                           
 As seen in the violin graph above, where 0 represents an alive patient, older patients are more likely to be sent to the hospital for in-patient care. This is reflected in older individuals also seeming to be the largest proportion of mortality cases at the hospital. 
 
 There is greater variation in age between in-patient and out-patient care for patients who are living at the time of the data collection than those who have died, showing that although older patients are more likely to be sent to the hospital for in-patient care, treatment type might not be predictive of mortality. Overall, it appears that older populations are more at risk for mortality due to the disease, and we will look for a similar trend in our models. 
                                                                                         
-#![](figures/Wait_Time.png)
+![](figures/Wait_Time.png)
 
                                                                                           
 The above graph shows how patients who wait longer to be treated for the disease might have a similar mortality rate to those who received treatment earlier. The wait time variable was calculated by finding the number of days between the patient's admit date to the care unit and the day their first symptoms began. Patients who died on average seem to have waited longer for treatment, but this pattern is most likely not statistically significant. 
@@ -47,20 +49,20 @@ Before we run a gbm model, we remove certain variables that might cause collinea
 cat(readLines('figures/bm.txt'), sep = '\n')
 ```
 
-From the logistic regression model summary, we can see that the results corroborate what we have found in the gbm model: icu, age, and contact_other_covid are statistically significant variables in the model at the alpha = 0.05 level, while diabetes and renal_chronic are almost significant at the alpha = 0.10 level. The prediction accuracy is 0.975, which can be seen in the prediction density plot below; the model predicts that most patients will live, possibly because deceased cases are relatively few in number (around 1/50 observed patients). This might hint that we are working with a class imbalance, which we will try to address with cross validation or resampling using the caret package on an equally sampled subset of the data, where 3000 observations are each 0 and 1 for mortality. 
+From the logistic regression model summary, we can see that the results corroborate what we have found in the gbm model: icu, age, and contact_other_covid are statistically significant variables in the model along with gender at the alpha = 0.05 level, while diabetes and renal_chronic are almost significant at the alpha = 0.10 level. The prediction accuracy is 0.975, which can be seen in the prediction density plot below; the model predicts that most patients will live, possibly because deceased cases are relatively few in number (around 1/50 observed patients). This might hint that we are working with a class imbalance, which we will try to address with cross validation or resampling using the caret package on an equally sampled subset of the data, where 3000 observations are each 0 and 1 for mortality. 
 
 
 ```{r comment=''}
 cat(readLines('figures/lm.txt'), sep = '\n')
 ```
 
-#![](figures/Prediction_glm.png)
+![](figures/Prediction_glm.png)
 
-The second logistic model is mathematically defined the same way as above, in addition to 50 fold cross validation on an equally sampled set. In this logistic model, our statistically significant parameters at the 0.05 level remain relatively the same, with age, gender, diabetes, renal_chronic, inmsupr, contact_other_covid, and icu status being significant in predicting mortality. Prediction accuracy is 0.90875, which is adequate due to the class imbalance being addressed as seen in the prediction density plot: 
+The second logistic model is mathematically defined the same way as above, in addition to 50 fold cross validation on an equally sampled set. In this logistic model, our statistically significant parameters at the 0.05 level remain relatively the same, with age, gender, diabetes, renal_chronic, inmsupr, contact_other_covid, and icu status being significant in predicting mortality. Prediction accuracy is 0.90875, which is adequate due to the class imbalance being addressed as seen in the prediction density plot. Additionally, the predictions from the cross validation and glm logistic models overlap: 
 
-#![](figures/Prediction_caret_glm.png)
+![](figures/Prediction_caret_glm.png)
 
-As described in the summary below, for all other variables held constant, we can conclude that for a baseline of female the log odds of mortality increases by approximately 0.518 for males. The log odds increases by 0.0389 for every increase in year of the patient. For the baseline of having diabetes or chronic kidney disease, no diabetes results in a -0.4121 log odds decrease in mortality and no kidney disease results in a -0.912 log odds decrease in mortality, and not entering the icu results in a -1.887 log odds decrease, or -5.481 log odds decrease if entering the icu is not applicable. Not being immunosuppressed resulted in a -1.201 log odds decrease in mortality. The coefficients corresponding to not entering the icu are negatively correlated with mortality, because individuals without severe symptoms usually do not require intensive care. Surprisingly, not having or no specified contact with someone with a diagnosed COVID-19 case resulted in a 1.016 or 1.987 increase in log odds respectively, and is possibly due to a lack of knowledge for potential cases around the patient resulting in a higher risk of mortality. 
+As described in the summary below, for all other variables held constant, we can conclude that for a baseline of female the log odds of mortality increases by approximately 0.518 for males. The log odds increases by 0.0389 for every increase in age by year of the patient. For the baseline of having diabetes or chronic kidney disease, no diabetes results in a -0.4121 log odds decrease in mortality and no kidney disease results in a -0.912 log odds decrease in mortality, and not entering the icu results in a -1.887 log odds decrease, or -5.481 log odds decrease if entering the icu is not applicable. Not being immunosuppressed resulted in a -1.201 log odds decrease in mortality. The coefficients corresponding to not entering the icu are negatively correlated with mortality, because individuals without severe symptoms usually do not require intensive care. Surprisingly, not having or no specified contact with someone with a diagnosed COVID-19 case resulted in a 1.016 or 1.987 increase in log odds respectively, and is possibly due to a lack of knowledge of potential cases around the patient resulting in a higher risk of mortality. 
 
 ```{r comment=''}
 cat(readLines('figures/glmFit1.txt'), sep = '\n')
@@ -68,8 +70,7 @@ cat(readLines('figures/glmFit1.txt'), sep = '\n')
 
 From our analysis of the COVID-19 data, we conclude that pre-existing health conditions and other characteristics of individuals can be significant in predicting whether severe symptoms of SARS-CoV-2 could occur, of which include gender, age, diabetes, chronic kidney failure, and immunosuppression. We also found that contact tracing can be helpful in reducing risk of mortality within positive individuals, as the lack of knowledge of interacting with positive case individuals resulted in higher mortality rates. 
 
-Therefore, our statistical models can predict whether someone with certain characteristics or pre-conditions are more likely to experience more severe symptoms of COVID-19 such as mortality. Further work in studying a different dependent variable as a severe symptom, improving accuracy of methods for reducing class imbalance and finding clusters of subpopulations susceptible to the disease can also be further areas of study one could consider.                                                                    
-
+Therefore, our statistical models can predict whether someone with certain characteristics or pre-conditions are more likely to experience more severe symptoms of COVID-19 such as mortality. Further work in studying a different dependent variable as a severe symptom, improving accuracy of methods for reducing class imbalance and finding clusters of subpopulations susceptible to the disease can also be further areas of study one could consider.                                              
 Using this Project
 -----------------
 
