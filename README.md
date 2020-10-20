@@ -99,7 +99,7 @@ To build the container:
     
 This Docker container is based on rocker/verse. 
 
-After connecting to the docker environment, you will need to be able to run the terminal on the computer. We will be creating the report through the computer terminal to avoid encountering data allocation errors when generating the pdf.
+After connecting to the docker environment, you will need to be able to run the terminal on the computer. Due to large data sizes, we will be creating the report through the computer terminal to avoid encountering data allocation errors when generating the pdf.
 
 In the computer terminal, load R and select the local US CRAN mirror. Then install packages located in the Dockerfile (if any dependencies need to be installed, select yes):
 
