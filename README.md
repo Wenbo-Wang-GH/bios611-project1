@@ -2,7 +2,7 @@ Bios 611 - Project 1
 ====================
   COVID-19 Analysis
 ------------------
-
+The example report below is an example of the final report in report.pdf. 
 ### Introduction
   
   The coronavirus pandemic is a result of the coronavirus disease (COVID-19) caused by the severe acute respiratory syndrome coronavirus 2 (SARS-CoV-2), an RNA virus that has affected the lives of many individuals since its discovery late in 2019. 
@@ -22,14 +22,14 @@ The dataset contains observations of patients from Mexico, and can be found on [
 Two descriptive Excel files called "Description" and "Catalogs" contain the former variable names and instructions for interpretation of numeric values: For yes/no responses, the catalog describes yes as 1, no as 2, NA as 97, question ignored as 98, and not specified as 99. For gender, 1 is female and 2 is male, and 99 is not specified. Positive SARS-CoV-2 cases are labeled as 2. We will be working on the subset of all positive SARS-CoV-2 cases for this report.
                                                                                         
 ### Preliminary Figures
-![](figures/Patient_Type_Age.png)
+#![](figures/Patient_Type_Age.png)
 
                                                                                           
 As seen in the violin graph above, where 0 represents an alive patient, older patients are more likely to be sent to the hospital for in-patient care. This is reflected in older individuals also seeming to be the largest proportion of mortality cases at the hospital. 
 
 There is greater variation in age between in-patient and out-patient care for patients who are living at the time of the data collection than those who have died, showing that although older patients are more likely to be sent to the hospital for in-patient care, treatment type might not be predictive of mortality. Overall, it appears that older populations are more at risk for mortality due to the disease, and we will look for a similar trend in our models. 
                                                                                         
-![](figures/Wait_Time.png)
+#![](figures/Wait_Time.png)
 
                                                                                           
 The above graph shows how patients who wait longer to be treated for the disease might have a similar mortality rate to those who received treatment earlier. The wait time variable was calculated by finding the number of days between the patient's admit date to the care unit and the day their first symptoms began. Patients who died on average seem to have waited longer for treatment, but this pattern is most likely not statistically significant. 
@@ -54,11 +54,11 @@ From the logistic regression model summary, we can see that the results corrobor
 cat(readLines('figures/lm.txt'), sep = '\n')
 ```
 
-![](figures/Prediction_glm.png)
+#![](figures/Prediction_glm.png)
 
 The second logistic model is mathematically defined the same way as above, in addition to 50 fold cross validation on an equally sampled set. In this logistic model, our statistically significant parameters at the 0.05 level remain relatively the same, with age, gender, diabetes, renal_chronic, inmsupr, contact_other_covid, and icu status being significant in predicting mortality. Prediction accuracy is 0.90875, which is adequate due to the class imbalance being addressed as seen in the prediction density plot: 
 
-![](figures/Prediction_caret_glm.png)
+#![](figures/Prediction_caret_glm.png)
 
 As described in the summary below, for all other variables held constant, we can conclude that for a baseline of female the log odds of mortality increases by approximately 0.518 for males. The log odds increases by 0.0389 for every increase in year of the patient. For the baseline of having diabetes or chronic kidney disease, no diabetes results in a -0.4121 log odds decrease in mortality and no kidney disease results in a -0.912 log odds decrease in mortality, and not entering the icu results in a -1.887 log odds decrease, or -5.481 log odds decrease if entering the icu is not applicable. Not being immunosuppressed resulted in a -1.201 log odds decrease in mortality. The coefficients corresponding to not entering the icu are negatively correlated with mortality, because individuals without severe symptoms usually do not require intensive care. Surprisingly, not having or no specified contact with someone with a diagnosed COVID-19 case resulted in a 1.016 or 1.987 increase in log odds respectively, and is possibly due to a lack of knowledge for potential cases around the patient resulting in a higher risk of mortality. 
 
@@ -88,11 +88,17 @@ then connect to the machine on port 8787.
 
 Building a PDF for Project
 ------------------------------
+You will need Docker, and be able to run docker as your current user.
 
-After connecting to port 8787, you will need the Makefile and be able to run the terminal. 
-We will be creating the report through the computer terminal, to prevent encountering data allocation errors.
+To build the container: 
 
-In the computer terminal, load R and select a US CRAN mirror. Then install packages located in the Dockerfile:
+    > docker build . -t project1-env
+    
+This Docker container is based on rocker/verse. 
+
+After connecting to the docker environment, you will need to be able to run the terminal on the computer. We will be creating the report through the computer terminal to avoid encountering data allocation errors when generating the pdf.
+
+In the computer terminal, load R and select the local US CRAN mirror. Then install packages located in the Dockerfile (if any dependencies need to be installed, select yes):
 
     > R 
     > install.packages('tidyverse')
@@ -111,5 +117,7 @@ Then in the same terminal:
 
     > make clean; make report.pdf
     
-and the report will generate, and can be found in the home list of files.
+The report.knit.md and report.pdf will generate, and the file can be opened with:
+
+    > open report.pdf
 
