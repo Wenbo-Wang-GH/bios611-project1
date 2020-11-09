@@ -7,3 +7,4 @@ RUN R -e "install.packages('kernlab')"
 RUN R -e "install.packages('gbm')"
 RUN R -e "install.packages('e1071')"
 RUN R -e "install.packages('caret')"
+RUN R -e “install.packages(‘shiny’)”
