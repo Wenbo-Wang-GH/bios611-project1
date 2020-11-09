@@ -30,3 +30,12 @@ figures/bm.txt: derived_data/covid.csv
 
 report.pdf: report.Rmd figures/Patient_Type_Age.png figures/Wait_Time.png figures/Prediction_glm.png figures/Prediction_caret_glm.png figures/lm.txt figures/bm.txt derived_data/covid.csv derived_data/covid_dup.csv
 	R -e "rmarkdown::render('report.Rmd', output_format='pdf_document')"
+
+.PHONY: variables_select
+
+variables_select: derived_data/covid.csv
+	Rscript variables_select.R ${PORT}
+	
+	
+	
+	
