@@ -1,5 +1,6 @@
 library(shiny)
 library(tidyverse)
+source("utils.R")
 
 covid <- readRDS("derived_data/covid.csv")
 
