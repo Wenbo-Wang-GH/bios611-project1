@@ -28,7 +28,8 @@ ui <- fluidPage(
 		),
 		mainPanel(
 		plotOutput("plot1"),
-		tags$h6("This RShiny program allows one to view how different health preconditions affect the prevalence of mortality in different age groups. In our report, we were able to show the results for one patient characteristic; this app is a convenient way to view the results for more variables.")
+		tags$h6("0: no mortality, 1: mortality.
+						This RShiny program allows one to view how different health preconditions affect the prevalence of mortality in different age groups. In our report, we were able to show the results for one patient characteristic; this app is a convenient way to view the results for more variables.")
 		)
 	)
 )
