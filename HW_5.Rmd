@@ -1,0 +1,67 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+```{r}
+require(dplyr)
+library(devtools)
+library(ggfortify)
+
+hweight<- read.csv("~/Downloads/datasets_26073_33239_weight-height.txt")
+
+#Q1
+set.seed(1)
+#Prepare the data
+hweight$Female <- ifelse(hweight$Gender == "Female", TRUE, FALSE);
+hweight <- tibble(hweight, set=factor(c(rep("Train",nrow(hweight)*.7),
+                         rep("Validate",nrow(hweight)*0.15),
+                         rep("Test",nrow(hweight)*0.15))
+                       %>%
+                       sample(nrow(hweight),replace=FALSE)))
+
+train <- hweight %>% filter(set=="Train");
+validate <- hweight %>% filter(set=="Validate");
+test <- hweight %>% filter(set=="Test")
+
+bm <- gbm(Female ~ Height + Weight, distribution="bernoulli", data=train, n.trees=100, interaction.depth = 2, shrinkage = 0.1)
+
+pred_bm <- predict(bm, validate, type="response");
+sum((pred_bm>0.5)==validate$Female)/nrow(validate);
+#The accuracy is 0.923, while in the previous homework the accuracy was 0.52.
+
+
+#Q2
+charcters_stats <- read.csv("~/Downloads/charcters_stats.csv")
+#1. The dataset has several rows where the values exceed 100, so might need to exclude them if the maximum is 100. Also, 
+#there seems to be many rows where all the values are either 0 or 1, and one should consider whether these values are 
+#actually 0/1 or were not available and filled in as such; we might want to remove these rows too. 
+
+#2. 
+pc <- prcomp(charcters_stats[,3:8]) #exclude total column, as it is collinear with the other columns
+summary(pc) 
+#Three components are needed for 85% variation. 
+
+#3.
+#Since we assume here that the characteristic stats are all on a scale from 0/1 to 100 or so, we do not need to
+#normalize. 
+
+#4. 
+#Yes, the total column is the sum of the values of the other columns 3-8. 
+
+#5.
+pc2 <- prcomp(charcters_stats[,3:9])
+summary(pc2) 
+#We should not include the total column in the the PCA, since it is collinear with the other columns and is weighted for
+#more heavily than the other columns. We would expect the total column to explain the majority of the variation
+#of the dataset, due to it being more heavily weighted. 
+
+#6.
+autoplot(pc, data= charcters_stats, colour = 'Alignment')
+#from the plot, we can see that the variables are distributed fairly evenly for good, neutral, and bad alignments. 
+#There seems to be corners around the one cluster, suggesting that heros/villians show similar patterns in characteristics.
+
+
+```
+
