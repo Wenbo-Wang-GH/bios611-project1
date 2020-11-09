@@ -123,4 +123,19 @@ Then in the same terminal:
 The report.knit.md and report.pdf will generate, and the file can be opened with:
 
     > open report.pdf
+    
+Building an RShiny App
+-----------------------
+
+To build the container: 
+
+    > docker build . -t project1-env
+    
+This Docker container is based on rocker/verse. 
+
+After connecting to the docker environment, run the following code in the terminal:
+
+    > docker run -p 8788:8788 -v `pwd`:/home/rstudio -e PASSWORD = "hellocomp" -it l17 sudo -H -u       rstudio /bin/bash -c "cd ~/; PORT=8788 make variables_select
+
+This will invoke the appropriate make target in the Makefile, and the shiny app can be found at port mentioned in the variables_select file. Type "http://0.0.0.0:8788/" as the url address to load the app.
 
