@@ -133,9 +133,13 @@ To build the container:
     
 This Docker container is based on rocker/verse. 
 
-After connecting to the docker environment, run the following code in the terminal:
+After connecting to the docker environment, Run rstudio server:
+    
+    > docker run -v `pwd`:/home/rstudio -p 8787:8787 -e PASSWORD=<yourpassword> -t project1-env
+      
+Then type in the terminal: 
 
-    > docker run -p 8788:8788 -v `pwd`:/home/rstudio -e PASSWORD = "hellocomp" -it l17 sudo -H -u       rstudio /bin/bash -c "cd ~/; PORT=8788 make variables_select
+    > PORT=8788 make variables_select
 
 This will invoke the appropriate make target in the Makefile, and the shiny app can be found at port mentioned in the variables_select file. Type "http://0.0.0.0:8788/" as the url address to load the app.
 
