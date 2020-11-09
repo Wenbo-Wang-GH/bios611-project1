@@ -1,6 +1,9 @@
 library(shiny)
 library(tidyverse)
-source("utils.R")
+
+args <- commandArgs(trailingOnly=T);
+
+port <- as.numeric(args[[1]]);
 
 covid <- readRDS("derived_data/covid.csv")
 
