@@ -141,5 +141,5 @@ Then type in the terminal:
 
     > PORT=8788 make variables_select
 
-This will invoke the appropriate make target in the Makefile, and the shiny app can be found at port mentioned in the variables_select file. Type "http://0.0.0.0:8788/" as the url address to load the app.
+This will invoke the appropriate make target in the Makefile, and the shiny app can be found at the host ("0.0.0.0") mentioned in the variables_select file. Type "http://0.0.0.0:8788/" as the url address to load the app.
 
