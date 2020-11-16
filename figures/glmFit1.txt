@@ -1,0 +1,47 @@
+
+Call:
+NULL
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-3.3254  -0.3005  -0.0411   0.3800   3.0591  
+
+Coefficients:
+                        Estimate Std. Error z value Pr(>|z|)    
+(Intercept)             1.637607   0.780006   2.099 0.035775 *  
+age                     0.038901   0.003384  11.494  < 2e-16 ***
+sex2                    0.518052   0.124467   4.162 3.15e-05 ***
+diabetes2              -0.412130   0.161995  -2.544 0.010956 *  
+diabetes98             -1.572109   1.179047  -1.333 0.182410    
+copd2                   0.465924   0.287791   1.619 0.105455    
+copd98                  0.027325   2.756403   0.010 0.992090    
+asthma2                 0.434979   0.381107   1.141 0.253721    
+asthma98              -14.572994 717.014565  -0.020 0.983784    
+inmsupr2               -1.201494   0.320999  -3.743 0.000182 ***
+inmsupr98              11.372048 717.000550   0.016 0.987346    
+hypertension2           0.081009   0.164027   0.494 0.621395    
+hypertension98          3.274073   3.603181   0.909 0.363529    
+cardiovascular2        -0.139339   0.294304  -0.473 0.635890    
+cardiovascular98        0.338981   1.344098   0.252 0.800887    
+obesity2               -0.023484   0.167230  -0.140 0.888322    
+obesity98             -14.679826 479.332429  -0.031 0.975568    
+renal_chronic2         -0.912308   0.293483  -3.109 0.001880 ** 
+renal_chronic98        -1.126809   2.054853  -0.548 0.583442    
+tobacco2               -0.174451   0.210717  -0.828 0.407732    
+tobacco98              14.366318 479.324177   0.030 0.976089    
+contact_other_covid2    1.016028   0.189995   5.348 8.91e-08 ***
+contact_other_covid99   1.987092   0.186187  10.673  < 2e-16 ***
+icu2                   -1.886844   0.336646  -5.605 2.08e-08 ***
+icu97                  -5.480951   0.343502 -15.956  < 2e-16 ***
+icu99                  11.653610 793.749334   0.015 0.988286    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 4990.7  on 3599  degrees of freedom
+Residual deviance: 1889.4  on 3574  degrees of freedom
+AIC: 1941.4
+
+Number of Fisher Scoring iterations: 14
+

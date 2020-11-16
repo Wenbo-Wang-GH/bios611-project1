@@ -1,0 +1,49 @@
+
+Call:
+glm(formula = dependent ~ age + sex + diabetes + copd + asthma + 
+    inmsupr + hypertension + +cardiovascular + obesity + renal_chronic + 
+    tobacco + contact_other_covid + icu, family = binomial, data = train)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-1.4276  -0.0910  -0.0598  -0.0390   3.7981  
+
+Coefficients:
+                        Estimate Std. Error z value Pr(>|z|)    
+(Intercept)           -4.243e+00  8.374e-01  -5.067 4.04e-07 ***
+age                    2.749e-02  3.839e-03   7.160 8.04e-13 ***
+sex2                   3.975e-01  1.416e-01   2.807 0.005005 ** 
+diabetes2             -2.571e-01  1.578e-01  -1.629 0.103245    
+diabetes98             1.521e+00  1.367e+00   1.113 0.265687    
+copd2                  1.078e-01  2.710e-01   0.398 0.690828    
+copd98                 8.878e+00  1.982e+03   0.004 0.996426    
+asthma2                5.443e-01  5.371e-01   1.013 0.310834    
+asthma98               2.827e+01  1.582e+03   0.018 0.985742    
+inmsupr2              -3.619e-01  2.904e-01  -1.246 0.212598    
+inmsupr98             -1.223e+01  6.815e+02  -0.018 0.985682    
+hypertension2         -1.629e-01  1.618e-01  -1.007 0.314125    
+hypertension98        -1.513e+01  9.163e+02  -0.017 0.986824    
+cardiovascular2       -1.921e-03  2.647e-01  -0.007 0.994209    
+cardiovascular98      -1.358e+01  1.025e+03  -0.013 0.989425    
+obesity2               2.667e-01  1.908e-01   1.397 0.162286    
+obesity98             -3.246e-01  1.879e+00  -0.173 0.862869    
+renal_chronic2        -3.566e-01  2.171e-01  -1.642 0.100507    
+renal_chronic98        3.047e+00  2.043e+00   1.492 0.135821    
+tobacco2               3.131e-01  2.488e-01   1.259 0.208205    
+tobacco98              2.002e+00  5.647e+00   0.354 0.722978    
+contact_other_covid2   1.162e+00  3.242e-01   3.585 0.000337 ***
+contact_other_covid99  1.708e+00  3.175e-01   5.380 7.44e-08 ***
+icu2                  -8.319e-01  2.558e-01  -3.252 0.001147 ** 
+icu97                 -4.223e+00  3.163e-01 -13.350  < 2e-16 ***
+icu99                 -1.417e+01  2.400e+03  -0.006 0.995289    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 2657.8  on 11999  degrees of freedom
+Residual deviance: 1579.4  on 11974  degrees of freedom
+AIC: 1631.4
+
+Number of Fisher Scoring iterations: 15
+

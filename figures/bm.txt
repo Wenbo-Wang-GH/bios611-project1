@@ -1,0 +1,14 @@
+                                    var    rel.inf
+icu                                 icu 48.3352003
+age                                 age 30.9441739
+contact_other_covid contact_other_covid  8.2943098
+renal_chronic             renal_chronic  2.9651828
+diabetes                       diabetes  2.2127906
+copd                               copd  1.8412525
+sex                                 sex  1.7548927
+hypertension               hypertension  1.4713462
+inmsupr                         inmsupr  0.7699238
+cardiovascular           cardiovascular  0.6399164
+obesity                         obesity  0.4837051
+tobacco                         tobacco  0.2873059
+asthma                           asthma  0.0000000
