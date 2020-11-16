@@ -70,10 +70,20 @@ cat(readLines('figures/glmFit1.txt'), sep = '\n')
 
 From our analysis of the COVID-19 data, we conclude that pre-existing health conditions and other characteristics of individuals can be significant in predicting whether severe symptoms of SARS-CoV-2 could occur, of which include gender, age, diabetes, chronic kidney failure, and immunosuppression. We also found that contact tracing can be helpful in reducing risk of mortality within positive individuals, as the lack of knowledge of interacting with positive case individuals resulted in higher mortality rates. 
 
-Therefore, our statistical models can predict whether someone with certain characteristics or pre-conditions are more likely to experience more severe symptoms of COVID-19 such as mortality. Further work in studying a different dependent variable as a severe symptom, improving accuracy of methods for reducing class imbalance and finding clusters of subpopulations susceptible to the disease can also be further areas of study one could consider.                                              
+Therefore, our statistical models can predict whether someone with certain characteristics or pre-conditions are more likely to experience more severe symptoms of COVID-19 such as mortality. Further work in studying a different dependent variable as a severe symptom, improving accuracy of methods for reducing class imbalance and finding clusters of subpopulations susceptible to the disease can also be further areas of study one could consider.  
+
+### Further Work: Clustering
+
+We apply the relevant variables to dimensionality reduction methods such as PCA and TSNE. From the PCA graph below, we see four clusters of which two seem to have a higher density of the dependent variable of 1 representing mortality. We will continue with a TSNE model to visualize the clusters.
+
+![](figures/PCA.png)
+
+From the TSNE graph, there appears to be five clusters with similar distribution of mortality cases as the PCA graph. If one subsets the data to those found in the two clusters with higher density of 1 cases or finds the eigenvectors to identify most explanatory variables maximizing variance, then one can view subpopulations more susceptible to COVID-19. 
+
+![](figures/tSNE.png)
 
 
-Using this Project
+Using this Project in RStudio
 -----------------
 
 You will need Docker, and be able to run docker as your current user.
@@ -87,6 +97,21 @@ This Docker container is based on rocker/verse. Run rstudio server:
     > docker run -v `pwd`:/home/rstudio -p 8787:8787 -e PASSWORD=<yourpassword> -t project1-env
       
 then connect to the machine on port 8787.
+
+Using this Project in Python
+-----------------------
+
+You will need Docker, and be able to run docker as your current user.
+
+To build the container: 
+
+    > docker build . -t project1-env
+
+This Docker container is based on rocker/verse. Run Python by writing in the terminal: 
+
+    >  docker run -e PASSWORD=“test” -p 8765:8765 -v `pwd`:/home/rstudio -it project1-env sudo -H -u rstudio /bin/bash -c "cd ~/; jupyter lab --ip 0.0.0.0 --port 8765"
+    
+then connect to the machine on port 8765. If prompted for a token, paste the token from the terminal and log in. 
 
 
 Building a PDF for Project
@@ -142,4 +167,5 @@ Then type in the terminal:
     > PORT=8788 make variables_select
 
 This will invoke the appropriate make target in the Makefile, and the shiny app can be found at the host ("0.0.0.0") mentioned in the variables_select file. Type "http://0.0.0.0:8788/" as the url address to load the app.
+
 
