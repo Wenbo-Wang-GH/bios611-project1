@@ -8,4 +8,5 @@ RUN R -e "install.packages('gbm')"
 RUN R -e "install.packages('e1071')"
 RUN R -e "install.packages('caret')"
 RUN R -e "install.packages('shiny')"
+RUN python3 -m pip install --upgrade pip
 RUN pip3 install numpy
