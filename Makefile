@@ -29,9 +29,11 @@ figures/bm.txt: derived_data/covid.csv
 	Rscript logistic_gbm.R
 
 figures/PCA.png: derived_data/covid.csv
+	ipython nbconvert --to=python tSNE.ipynb
 	python tSNE.ipynb
 
 figures/tSNE.png: derived_data/covid.csv
+	ipython nbconvert --to=python tSNE.ipynb
 	python tSNE.ipynb
 	
 report.pdf: report.Rmd figures/Patient_Type_Age.png figures/Wait_Time.png figures/Prediction_glm.png figures/Prediction_caret_glm.png figures/lm.txt figures/bm.txt figures/PCA.png figures/tSNE.png derived_data/covid.csv derived_data/covid_dup.csv 
