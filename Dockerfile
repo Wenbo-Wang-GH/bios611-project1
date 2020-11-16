@@ -16,5 +16,5 @@ RUN pip3 install sklearn
 RUN pip3 install matplotlib
 RUN pip3 install seaborn
 RUN pip3 install pyreadr
-RUN pip install pyreadr
+
 

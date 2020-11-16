@@ -145,7 +145,7 @@ Then in the same terminal:
 
     > make clean; make report.pdf
     
-The report.knit.md and report.pdf will generate, and the file can be opened with:
+If python packages are not being imported, you can manually install the packages on your terminal via "pip install <package>". The report.knit.md and report.pdf will generate, and the file can be opened with:
 
     > open report.pdf
     
