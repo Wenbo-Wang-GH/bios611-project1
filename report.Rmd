@@ -68,4 +68,14 @@ cat(readLines('figures/glmFit1.txt'), sep = '\n')
 
 From our analysis of the COVID-19 data, we conclude that pre-existing health conditions and other characteristics of individuals can be significant in predicting whether severe symptoms of SARS-CoV-2 could occur, of which include gender, age, diabetes, chronic kidney failure, and immunosuppression. We also found that contact tracing can be helpful in reducing risk of mortality within positive individuals, as the lack of knowledge of interacting with positive case individuals resulted in higher mortality rates. 
 
-Therefore, our statistical models can predict whether someone with certain characteristics or pre-conditions are more likely to experience more severe symptoms of COVID-19 such as mortality. Further work in studying a different dependent variable as a severe symptom, improving accuracy of methods for reducing class imbalance and finding clusters of subpopulations susceptible to the disease can also be further areas of study one could consider.                                              
+Therefore, our statistical models can predict whether someone with certain characteristics or pre-conditions are more likely to experience more severe symptoms of COVID-19 such as mortality. Further work in studying a different dependent variable as a severe symptom, improving accuracy of methods for reducing class imbalance and finding clusters of subpopulations susceptible to the disease can also be further areas of study one could consider.     
+
+### Further Work: Clustering
+
+We apply the relevant variables to dimensionality reduction methods such as PCA and TSNE. From the PCA graph below, we see four clusters of which two seem to have a higher density of the dependent variable of 1 representing mortality. We will continue with a TSNE model to visualize the clusters.
+
+![](figures/PCA.png)
+
+From the TSNE graph, there appears to be five clusters with similar distribution of mortality cases as the PCA graph. If one subsets the data to those found in the two clusters with higher density of 1 cases or finds the eigenvectors to identify most explanatory variables maximizing variance, then one can view subpopulations more susceptible to COVID-19. 
+
+![](figures/tSNE.png)
