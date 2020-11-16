@@ -10,3 +10,9 @@ RUN R -e "install.packages('caret')"
 RUN R -e "install.packages('shiny')"
 RUN apt update -y && apt install -y python3-pip
 RUN pip3 install jupyter jupyterlab
+RUN pip3 install numpy
+RUN pip3 install pandas
+RUN pip3 install sklearn
+RUN pip3 install matplotlib
+RUN pip3 install seaborn
+
